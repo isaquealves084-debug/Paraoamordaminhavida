@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Para Minha Princesaa 💖</title>
+
+<style>
+
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle at bottom, #020111, #000000);
+  overflow:hidden;
+  color: white;
+  text-align:center;
+}
+
+/* Estrelas */
+.stars{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:
+  radial-gradient(1px 1px at 20% 30%, white, transparent),
+  radial-gradient(1px 1px at 40% 70%, white, transparent),
+  radial-gradient(1px 1px at 60% 20%, white, transparent),
+  radial-gradient(2px 2px at 80% 50%, white, transparent),
+  radial-gradient(1px 1px at 90% 80%, white, transparent);
+  background-size: 200px 200px;
+  animation: moveStars 60s linear infinite;
+  z-index:-1;
+}
+
+@keyframes moveStars{
+  from{background-position:0 0;}
+  to{background-position:-10000px 5000px;}
+}
+
+/* Caixa */
+.card{
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(8px);
+  margin:30px auto;
+  padding:25px;
+  width:90%;
+  max-width:380px;
+  border-radius:20px;
+  box-shadow:0 0 25px rgba(255,105,180,0.4);
+}
+
+/* Fotos */
+.photos{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin:15px 0;
+}
+
+.photos img{
+  width:90px;
+  height:120px;
+  object-fit:cover;
+  border-radius:12px;
+  border:2px solid pink;
+}
+
+/* Botão */
+button{
+  background:#ff5fa2;
+  border:none;
+  padding:12px 20px;
+  border-radius:25px;
+  color:white;
+  font-size:15px;
+  cursor:pointer;
+  margin:10px;
+}
+
+/* Mensagem secreta */
+#secret{
+  display:none;
+  background: rgba(255,20,147,0.3);
+  padding:15px;
+  border-radius:15px;
+  margin-top:15px;
+}
+
+/* Corações */
+.heart{
+  position:absolute;
+  color:pink;
+  font-size:20px;
+  animation:float 6s linear infinite;
+}
+
+@keyframes float{
+  from{bottom:-20px;opacity:1;}
+  to{bottom:100%;opacity:0;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<div class="card">
+
+<h1>💖 Maria Eduarda dos Santos💖</h1>
+<h3>Minha princesaa 👑</h3>
+
+<div class="photos">
+  <img src="foto1.jpg">
+  <img src="foto2.jpg">
+  <img src="foto3.jpg">
+  <img src="foto4.jpg">
+  <img src="foto5.jpg">
+  <img src="foto6.jpg">
+</div>
+
+<p>
+Vc é a mulher mais incrivel desse mundo, a minha pessoa favorita.<br>
+Você é meu mundo, meu sorriso, minha princesa, minha gatinha, mnh donaa, vcc e só minha, e eu só sou seuu, Euu tee amoo. 💕
+</p>
+
+<div id="counter"></div>
+
+<button onclick="showSurprise()">🎁 Surpresa</button>
+
+<div id="secret">
+Meu amor, eu prometo cuidar de você,<br>
+te respeitar, corrigir meus erros, mudar minhas atitudes que você não gosta, te amar e estar sempre ao seu lado. 💍💖<br>
+Você é tudo pra mim, Por favor, deixe eu colocar um anel no seu dedo, falar com sua mãe, para que ela deixe a gnt namorar.
+Eu quero te dar o meu presente pra vcc, te dar vários e vários para sempree. EU TEEE AMOO MINHA PRINCESA
+</div>
+
+</div>
+
+<audio id="music" loop>
+  <source src="loveyou.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+// Música começa em 1:03
+const music = document.getElementById("music");
+music.currentTime = 63;
+
+// Data especial
+const startDate = new Date("2025-11-16T00:00:00");
+
+function updateCounter(){
+
+  const now = new Date();
+  const diff = now - startDate;
+
+  const days = Math.floor(diff / (1000*60*60*24));
+  const hours = Math.floor(diff / (1000*60*60) % 24);
+  const min = Math.floor(diff / (1000*60) % 60);
+  const sec = Math.floor(diff / 1000 % 60);
+
+  document.getElementById("counter").innerHTML =
+  "Desde 16/11/2025 💕<br>" +
+  days+" dias "+hours+"h "+min+"m "+sec+"s";
+}
+
+setInterval(updateCounter,1000);
+updateCounter();
+
+// Surpresa
+function showSurprise(){
+  document.getElementById("secret").style.display="block";
+  music.play();
+}
+
+// Efeito toque
+document.addEventListener("click",function(e){
+
+  const heart = document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="💗";
+
+  heart.style.left=e.clientX+"px";
+  heart.style.top=e.clientY+"px";
+
+  document.body.appendChild(heart);
+
+  setTimeout(()=>{heart.remove();},6000);
+});
+
+// Corações automáticos
+setInterval(()=>{
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="💖";
+  h.style.left=Math.random()*100+"%";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+},500);
+
+</script>
+
+</body>
+</html>
